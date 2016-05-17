@@ -1,0 +1,24 @@
+var GR2JSON = Class.create();
+GR2JSON.prototype = {
+    initialize: function() {
+    },
+
+    convert: function (gr) {
+        var hash = {};
+
+        var fields = gr.getFields();
+        for (var i = 0; i < fields.size(); i++) {
+            var glideElement = fields.get(i);
+            {
+                var name ="";
+                try {
+                    name = glideElement.getName();
+                } catch (e) {}
+                hash[name] = gr.getValue(name);
+            }
+        }
+        return hash;
+    },
+
+    type: 'GR2JSON'
+};
